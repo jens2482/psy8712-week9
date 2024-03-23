@@ -21,9 +21,16 @@ rstats_tbl <- rbind(rstats_tbl1, rstats_tbl1) #combine the two separate data fra
 ggplot(rstats_tbl, aes(upvotes,comments)) +
   geom_jitter() + #there was quite a bit of point overlap so I included some jitter to be able to see the data a little better
   geom_smooth(method = "lm") + # I wanted to be able to visualize the trend in the relationship between these two values
-  xlab("Number of Upvotes") + 
-  ylab("Number of Comments") 
+  xlab("Number of Upvotes") + #easier to understand label
+  ylab("Number of Comments") #easier to understand label
 
 # Analysis
+correlation <- cor.test(rstats_tbl$upvotes, rstats_tbl$comments) #correlation test (gets correlation and p-value in one step)
+cat("Correlation coefficient:", correlation$estimate, "\n", "P-value:", correlation$p.value) #I wasn't sure if display was different than print...so I made it look a little fancier with cat()
 
 # Publication
+formatted_correlation <- str_replace(formatC(correlation$estimate, format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
+formatted_p_value <- str_replace(formatC(correlation$p.value, format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
+significance_outcome <- ifelse(cor_test$p.value <= 0.05, "was", "was not")
+cat("The correlation between upvotes and comments was r(", correlation$parameter, ") = ", formatted_correlation, ", p = ", formatted_p_value, ". This test ", significance_outcome, " statistically significant.", sep ="")
+
