@@ -3,7 +3,6 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(jsonlite)
 library(tidyverse)
 
-
 # Data Import and Cleaning
 io_output1 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100") #scrape first 100 posts
 io_output2 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100&after=t3_1b1mhmv") #input next 100 posts - I am not sure how to deal with this if the posts are in a different order or if there are more added later
@@ -33,4 +32,3 @@ formatted_correlation <- str_replace(formatC(correlation$estimate, format = "f",
 formatted_p_value <- str_replace(formatC(correlation$p.value, format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
 significance_outcome <- ifelse(cor_test$p.value <= 0.05, "was", "was not")
 cat("The correlation between upvotes and comments was r(", correlation$parameter, ") = ", formatted_correlation, ", p = ", formatted_p_value, ". This test ", significance_outcome, " statistically significant.", sep ="")
-
