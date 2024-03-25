@@ -28,8 +28,8 @@ correlation <- cor.test(rstats_tbl$upvotes, rstats_tbl$comments) #correlation te
 cat("Correlation coefficient:", correlation$estimate, "\n", "P-value:", correlation$p.value) #I wasn't sure if display was different than print...so I made it look a little fancier with cat()
 
 # Publication
+# The correlation between upvotes and comments was r(198) = .60, p = .00. This test was statistically significant.
 formatted_correlation <- str_replace(formatC(correlation$estimate, format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
 formatted_p_value <- str_replace(formatC(correlation$p.value, format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
 significance_outcome <- ifelse(correlation$p.value <= 0.05, "was", "was not")
 cat("The correlation between upvotes and comments was r(", correlation$parameter, ") = ", formatted_correlation, ", p = ", formatted_p_value, ". This test ", significance_outcome, " statistically significant.", sep ="")
-# The correlation between upvotes and comments was r(198) = .60, p = .00. This test was statistically significant.

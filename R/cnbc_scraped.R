@@ -35,8 +35,8 @@ anova_result <- aov(length ~ source, data = cnbc_tbl) %>% #I don't have a lot of
   print()
 
 # Publication
+# The results of an ANOVA comparing lengths across sources was F(3,130) = 3.39, p = .02. This test was statistically significant.
 formatted_F <- formatC(anova_result[[1]]$'F value'[[1]], format = "f", digits = 2) #2 decimal places
 formatted_p_value <- str_replace(formatC(anova_result[[1]]$'Pr(>F)'[[1]], format = "f", digits = 2), "^0", "") #2 decimal places and no leading zero
 significance_outcome <- ifelse(anova_result[[1]]$'Pr(>F)'[[1]] <= 0.05, "was", "was not")
 cat("The results of an ANOVA comparing lengths across sources was F(", anova_result[[1]]$Df[[1]],",", anova_result[[1]]$Df[[2]], ") = ", formatted_F, ", p = ", formatted_p_value, ". This test ", significance_outcome, " statistically significant.", sep ="")
-# The results of an ANOVA comparing lengths across sources was F(3,130) = 3.39, p = .02. This test was statistically significant.
