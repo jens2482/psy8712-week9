@@ -4,8 +4,8 @@ library(jsonlite)
 library(tidyverse)
 
 # Data Import and Cleaning
-io_output1 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100&after=t3_1bkemcp") #scrape first 100 posts
-io_output2 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100&after=t3_1b0idff") #input next 100 posts - I am not sure how to deal with this if the posts are in a different order or if there are more added later
+io_output1 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100&after=t3_1bkemcp") #scrape first 100 posts (starting with the first one the day I did the assignment)
+io_output2 <- fromJSON("https://www.reddit.com/r/rstats/.json?limit=100&after=t3_1b0idff") #input next 100 posts 
 io_df1 <- io_output1$data$children$data #convert to df
 io_df2 <- io_output2$data$children$data #convert to df
 rstats_tbl1 <- io_df1 %>% #select rows and rename 
