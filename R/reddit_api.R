@@ -17,7 +17,7 @@ rstats_tbl2 <- io_df2 %>% #select rows and rename - I did this twice because my 
 rstats_tbl <- rbind(rstats_tbl1, rstats_tbl1) #combine the two separate data frames into one
 
 # Visualization
-ggplot(rstats_tbl, aes(upvotes,comments)) +
+ggplot(rstats_tbl, aes(upvotes,comments)) + #I figured it made the most sense to create a scatterplot with a trend line when looking at a relationship
   geom_jitter() + #there was quite a bit of point overlap so I included some jitter to be able to see the data a little better
   geom_smooth(method = "lm") + # I wanted to be able to visualize the trend in the relationship between these two values
   xlab("Number of Upvotes") + #easier to understand label
